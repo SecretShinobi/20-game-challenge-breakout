@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqk0p8n50tqwi"]
+[gd_scene load_steps=6 format=3 uid="uid://bqk0p8n50tqwi"]
 
 [ext_resource type="PackedScene" uid="uid://bvnwcf8swnk2u" path="res://Game/barrier.tscn" id="1_173ey"]
+[ext_resource type="PackedScene" uid="uid://c5f4cxde0iwve" path="res://Game/Brick/brick.tscn" id="2_8eixp"]
 [ext_resource type="PackedScene" uid="uid://cvh7e7lowss2b" path="res://Game/Paddles/paddle.tscn" id="2_wg8dh"]
 [ext_resource type="Script" path="res://Game/Paddles/player.gd" id="3_5k4p7"]
+[ext_resource type="PackedScene" uid="uid://cfnoyoj8fxsam" path="res://Game/Ball/ball.tscn" id="5_snabk"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(920, 540)
@@ -32,7 +34,13 @@ scale = Vector2(1.065, 1)
 
 [node name="Bricks" type="Node2D" parent="."]
 
+[node name="StaticBody2D" parent="Bricks" instance=ExtResource("2_8eixp")]
+position = Vector2(8, -454)
+
 [node name="Paddle" parent="." instance=ExtResource("2_wg8dh")]
 position = Vector2(0, 500)
 rotation = 1.5708
+motion_mode = 1
 script = ExtResource("3_5k4p7")
+
+[node name="Ball" parent="." instance=ExtResource("5_snabk")]

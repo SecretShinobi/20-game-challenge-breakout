@@ -1,6 +1,7 @@
 class_name Brick
 extends StaticBody2D
 
+var health: int = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,3 +11,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_ball_damaged_entity(damage):
+	health -= damage
+	if health <= 0:
+		queue_free()

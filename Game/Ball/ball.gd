@@ -5,6 +5,8 @@ extends CharacterBody2D
 ## This is the ball that is bounced around between the two players in the pong
 ## game. The movement and behavior of the ball can be adjusted here
 
+# Signals
+signal damaged_entity(damage: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,17 +24,10 @@ func _physics_process(delta):
 			var paddle_x: float = collision.get_collider().get_global_position().x
 			#velocity.x *= 1.1 # Increase speed for each bounce
 			velocity.x = (ball_x - paddle_x) * 5
+		if collision.get_collider() is Brick:
+			damaged_entity.emit(10)
 
-
+# Functions
 func reset_ball():
 	set_position(Vector2(0.0, 0.0))
 	set_velocity(Vector2(velocity.y, 0.0))
-
-
-# Signal Methods
-func _on_left_net_body_entered(body):
-	reset_ball()
-
-
-func _on_right_net_body_entered(body):
-	reset_ball()

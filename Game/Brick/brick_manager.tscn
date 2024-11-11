@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsg7otxpe8163"]
+
+[ext_resource type="Script" path="res://Game/Brick/brick_manager.gd" id="1_prnvx"]
+
+[node name="Brickmanager" type="Node2D"]
+script = ExtResource("1_prnvx")

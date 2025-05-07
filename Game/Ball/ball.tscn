@@ -5,6 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hae12"]
 
 [node name="Ball" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_5lhg4")
 
 [node name="ColorRect" type="ColorRect" parent="."]

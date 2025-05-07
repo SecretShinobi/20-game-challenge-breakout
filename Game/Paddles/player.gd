@@ -15,7 +15,3 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
-
-
-func _on_game_player_scored(left, right):
-	set_position(Vector2(-750.0, 0.0))

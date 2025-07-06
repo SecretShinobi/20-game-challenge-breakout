@@ -1,21 +1,24 @@
 class_name Brick
 extends StaticBody2D
 
-var health: int = 10
-var value: int = 1
+var health: int
+var value: int
 
+@onready var ball = get_node("../Ball")
 
 # Signals
 
+
+func _init(b_health = 1, points = 1):
+	health = b_health
+	value = points
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_damage_taken(damage: int):
-	print(str(damage))
+func decrease_health(damage: int):
+	health -= damage
+	if health <= 0:
+		print("destroy me") # TODO: Update

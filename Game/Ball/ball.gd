@@ -6,8 +6,11 @@ extends CharacterBody2D
 ## game. The movement and behavior of the ball can be adjusted here
 
 # Signals
+signal life_lost
 signal collided_brick(damage: int)
-signal ball_missed(life_lost: int)
+
+# Variables
+var damage: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,12 +23,13 @@ func _physics_process(delta):
 	if collision:
 		velocity = velocity.bounce(collision.get_normal())
 		# Change the bounce angle if ball hits paddle based on dist. from center
-		if collision.get_collider() is Player:
-			var ball_x: float = get_global_position().x
-			var paddle_x: float = collision.get_collider().get_global_position().x
+		var object = collision.get_collider()
+		if object is Player:
+			var ball_x = get_global_position().x
+			var paddle_x = object.get_global_position().x
 			velocity.x = (ball_x - paddle_x) * 5
-		if collision.get_collider() is Brick:
-			print(collision.get_collider())
+		if object is Brick:
+			object.decrease_health(damage)
 
 # Functions
 func reset_ball():
@@ -36,3 +40,7 @@ func reset_ball():
 func _on_area_2d_body_entered(body): # Player miseed paddle: Lose a life
 	print("reset game!")
 	reset_ball()
+
+
+func _on_collided_brick(damage):
+	pass # Replace with function body.

@@ -1,12 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvnwcf8swnk2u"]
-
-[ext_resource type="Script" path="res://Game/Brick/brick.gd" id="1_uq7c1"]
+[gd_scene load_steps=2 format=3 uid="uid://bvnwcf8swnk2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_afttr"]
 size = Vector2(1800, 20)
 
 [node name="Barrier" type="StaticBody2D"]
-script = ExtResource("1_uq7c1")
+collision_layer = 2
+collision_mask = 9
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -900.0

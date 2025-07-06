@@ -5,7 +5,7 @@ extends Node2D
 # Variables
 var score: int = 0
 var lives: int = 3
-@export var brick = preload("res://Game/Brick/brick.tscn")
+@export var brick: PackedScene
 @onready var ball = $Ball
 
 # Signals
@@ -15,11 +15,11 @@ var lives: int = 3
 func _ready():
 	var spawn_point = Vector2(-625.0, -450.0)
 	
-	#for i in range(1, 11): # Spawn in bricks
-		#var brick_instance = brick.instantiate()
-		#add_child(brick_instance)
-		#brick_instance.set_position(spawn_point)
-		#spawn_point.x += 150
+	for i in range(0, 10): # Spawn in bricks
+		var brick_instance = brick.instantiate()
+		add_child(brick_instance)
+		brick_instance.set_position(spawn_point)
+		spawn_point.x += 150
 
 
 func _on_ball_dealt_damage(damage: int):

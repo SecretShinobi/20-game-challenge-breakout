@@ -53,3 +53,4 @@ collision_mask = 23
 position = Vector2(21, 466)
 
 [connection signal="body_entered" from="Environment/KillZone" to="Ball" method="_on_kill_zone_body_entered"]
+[connection signal="body_entered" from="Environment/KillZone" to="Paddle" method="_on_kill_zone_body_entered"]

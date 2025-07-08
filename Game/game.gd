@@ -4,6 +4,7 @@ extends Node2D
 
 # Variables
 var score: int = 0
+var lives: int = 3
 @export var brick: PackedScene
 @onready var ball = $Ball
 
@@ -12,6 +13,8 @@ var score: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ball.life_lost.connect(_on_life_lost)
+	
 	var spawn_point = Vector2(-625.0, -450.0)
 	
 	for i in range(0, 10): # Spawn in bricks
@@ -22,10 +25,13 @@ func _ready():
 		spawn_point.x += 150
 
 
-func _on_ball_dealt_damage(damage: int):
-	print(str(damage))
-
-
 func _on_scored_points(points: int):
 	score += points
 	print("points: " + str(score))
+
+
+func _on_life_lost():
+	lives -= 1
+	if lives <= 0:
+		print("game over")
+		ball.queue_free()

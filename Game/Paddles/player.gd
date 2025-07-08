@@ -2,7 +2,11 @@ class_name Player
 extends CharacterBody2D
 ## This is the class used to configure the player's parameters
 
-const SPEED = 750.0
+@export var SPEED = 750.0
+
+
+func _ready():
+	set_position(Vector2(0.0, 500))
 
 
 func _physics_process(delta):
@@ -15,3 +19,12 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_kill_zone_body_entered(body):
+	_reset()
+
+
+func _reset():
+	set_position(Vector2(0.0, 500))
+	set_velocity(Vector2(0.0, 0.0))

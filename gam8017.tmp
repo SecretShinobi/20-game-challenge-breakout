@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bvnwcf8swnk2u" path="res://Game/barrier.tscn" id="1_173ey"]
 [ext_resource type="Script" path="res://Game/game.gd" id="1_q2y1q"]
-[ext_resource type="PackedScene" uid="uid://c5f4cxde0iwve" path="res://Game/Brick/brick.tscn" id="2_skx1c"]
 [ext_resource type="PackedScene" uid="uid://cvh7e7lowss2b" path="res://Game/Paddles/paddle.tscn" id="2_wg8dh"]
+[ext_resource type="Script" path="res://Game/Paddles/player.gd" id="3_5k4p7"]
 [ext_resource type="PackedScene" uid="uid://cfnoyoj8fxsam" path="res://Game/Ball/ball.tscn" id="5_snabk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rajy"]
@@ -12,7 +12,6 @@ size = Vector2(1938, 34)
 [node name="Game" type="Node2D"]
 position = Vector2(920, 540)
 script = ExtResource("1_q2y1q")
-brick = ExtResource("2_skx1c")
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -39,17 +38,17 @@ scale = Vector2(1.065, 1)
 
 [node name="KillZone" type="Area2D" parent="Environment"]
 position = Vector2(0, 550)
-collision_layer = 16
-collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/KillZone"]
 position = Vector2(46, 12)
 shape = SubResource("RectangleShape2D_3rajy")
 
-[node name="Ball" parent="." instance=ExtResource("5_snabk")]
-collision_mask = 23
-
 [node name="Paddle" parent="." instance=ExtResource("2_wg8dh")]
-position = Vector2(21, 466)
+position = Vector2(0, 500)
+rotation = 1.5708
+motion_mode = 1
+script = ExtResource("3_5k4p7")
 
-[connection signal="body_entered" from="Environment/KillZone" to="Ball" method="_on_kill_zone_body_entered"]
+[node name="Ball" parent="." instance=ExtResource("5_snabk")]
+
+[connection signal="body_entered" from="Environment/KillZone" to="Ball" method="_on_area_2d_body_entered"]

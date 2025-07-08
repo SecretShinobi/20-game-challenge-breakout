@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvh7e7lowss2b"]
+[gd_scene load_steps=3 format=3 uid="uid://cvh7e7lowss2b"]
+
+[ext_resource type="Script" path="res://Game/Paddles/player.gd" id="1_5hfiu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6l6xq"]
 size = Vector2(20, 150)
 
 [node name="Paddle" type="CharacterBody2D"]
+rotation = -1.5708
+collision_mask = 10
+motion_mode = 1
+script = ExtResource("1_5hfiu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -10.0

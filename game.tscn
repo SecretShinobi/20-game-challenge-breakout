@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqk0p8n50tqwi"]
+[gd_scene load_steps=8 format=3 uid="uid://bqk0p8n50tqwi"]
 
 [ext_resource type="PackedScene" uid="uid://bvnwcf8swnk2u" path="res://Game/barrier.tscn" id="1_173ey"]
 [ext_resource type="Script" path="res://Game/game.gd" id="1_q2y1q"]
 [ext_resource type="PackedScene" uid="uid://c5f4cxde0iwve" path="res://Game/Brick/brick.tscn" id="2_skx1c"]
 [ext_resource type="PackedScene" uid="uid://cvh7e7lowss2b" path="res://Game/Paddles/paddle.tscn" id="2_wg8dh"]
 [ext_resource type="PackedScene" uid="uid://cfnoyoj8fxsam" path="res://Game/Ball/ball.tscn" id="5_snabk"]
+[ext_resource type="Script" path="res://hud.gd" id="6_u88rr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rajy"]
 size = Vector2(1938, 34)
@@ -51,6 +52,33 @@ collision_mask = 23
 
 [node name="Paddle" parent="." instance=ExtResource("2_wg8dh")]
 position = Vector2(21, 466)
+
+[node name="HUD" type="Control" parent="." node_paths=PackedStringArray("score", "lives")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -918.0
+offset_top = -538.0
+offset_right = 999.0
+offset_bottom = 578.0
+script = ExtResource("6_u88rr")
+score = NodePath("ScoreLabel")
+lives = NodePath("LivesLabel")
+
+[node name="ScoreLabel" type="RichTextLabel" parent="HUD"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 579.0
+offset_bottom = 116.0
+text = "Score: "
+
+[node name="LivesLabel" type="RichTextLabel" parent="HUD"]
+layout_mode = 0
+offset_left = 1267.0
+offset_top = 59.0
+offset_right = 1746.0
+offset_bottom = 125.0
+text = "Lives: "
 
 [connection signal="body_entered" from="Environment/KillZone" to="Ball" method="_on_kill_zone_body_entered"]
 [connection signal="body_entered" from="Environment/KillZone" to="Paddle" method="_on_kill_zone_body_entered"]

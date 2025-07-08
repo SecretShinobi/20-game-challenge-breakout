@@ -15,7 +15,7 @@ var lives: int = 3
 func _ready():
 	ball.life_lost.connect(_on_life_lost)
 	
-	var spawn_point = Vector2(-625.0, -450.0)
+	var spawn_point = Vector2(-625.0, -400.0)
 	
 	for i in range(0, 10): # Spawn in bricks
 		var brick_instance = brick.instantiate()

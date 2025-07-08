@@ -39,12 +39,17 @@ scale = Vector2(1.065, 1)
 
 [node name="KillZone" type="Area2D" parent="Environment"]
 position = Vector2(0, 550)
+collision_layer = 16
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/KillZone"]
 position = Vector2(46, 12)
 shape = SubResource("RectangleShape2D_3rajy")
 
 [node name="Ball" parent="." instance=ExtResource("5_snabk")]
+collision_mask = 23
 
 [node name="Paddle" parent="." instance=ExtResource("2_wg8dh")]
 position = Vector2(21, 466)
+
+[connection signal="body_entered" from="Environment/KillZone" to="Ball" method="_on_kill_zone_body_entered"]

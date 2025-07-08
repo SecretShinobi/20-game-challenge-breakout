@@ -4,7 +4,6 @@ extends Node2D
 
 # Variables
 var score: int = 0
-var lives: int = 3
 @export var brick: PackedScene
 @onready var ball = $Ball
 
@@ -17,6 +16,7 @@ func _ready():
 	
 	for i in range(0, 10): # Spawn in bricks
 		var brick_instance = brick.instantiate()
+		brick_instance.scored_points.connect(_on_scored_points)
 		add_child(brick_instance)
 		brick_instance.set_position(spawn_point)
 		spawn_point.x += 150
@@ -24,3 +24,8 @@ func _ready():
 
 func _on_ball_dealt_damage(damage: int):
 	print(str(damage))
+
+
+func _on_scored_points(points: int):
+	score += points
+	print("points: " + str(score))

@@ -13,7 +13,8 @@ signal scored_points(points)
 func _init(b_health = 1, points = 1):
 	health = b_health
 	value = points
-	
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

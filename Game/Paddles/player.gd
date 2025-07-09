@@ -21,7 +21,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _on_kill_zone_body_entered(body):
+func _on_kill_zone_body_entered(_body):
 	_reset()
 
 

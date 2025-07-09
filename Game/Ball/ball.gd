@@ -40,3 +40,7 @@ func _reset():
 func _on_kill_zone_body_entered(body):
 	life_lost.emit()
 	_reset()
+
+
+#func adjust_speed(speed: Vector2):
+	#velocity += speed

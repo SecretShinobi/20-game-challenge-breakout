@@ -5,7 +5,10 @@ extends Node2D
 # Variables
 var score: int = 0
 var lives: int = 3
+var bricks_remaining: int = 0
+
 @export var brick: PackedScene
+@export var hud: HUD
 @onready var ball = $Ball
 
 # Signals
@@ -21,17 +24,19 @@ func _ready():
 		var brick_instance = brick.instantiate()
 		brick_instance.scored_points.connect(_on_scored_points)
 		add_child(brick_instance)
+		bricks_remaining += 1
 		brick_instance.set_position(spawn_point)
 		spawn_point.x += 150
 
 
 func _on_scored_points(points: int):
 	score += points
-	print("points: " + str(score))
+	bricks_remaining -= 1
+	hud.update_hud()
+	ball.adjust_speed(Vector2(0.0, 100.0))
 
 
 func _on_life_lost():
 	lives -= 1
 	if lives <= 0:
-		print("game over")
 		ball.queue_free()

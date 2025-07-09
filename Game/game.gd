@@ -33,7 +33,7 @@ func _on_scored_points(points: int):
 	score += points
 	bricks_remaining -= 1
 	hud.update_hud()
-	ball.adjust_speed(Vector2(0.0, 100.0))
+	ball.adjust_speed(50.0)
 
 
 func _on_life_lost():

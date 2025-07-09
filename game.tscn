@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqk0p8n50tqwi"]
+
+[ext_resource type="PackedScene" uid="uid://bvnwcf8swnk2u" path="res://Game/barrier.tscn" id="1_173ey"]
+[ext_resource type="Script" path="res://Game/game.gd" id="1_q2y1q"]
+[ext_resource type="PackedScene" uid="uid://c5f4cxde0iwve" path="res://Game/Brick/brick.tscn" id="2_skx1c"]
+[ext_resource type="PackedScene" uid="uid://cvh7e7lowss2b" path="res://Game/Paddles/paddle.tscn" id="2_wg8dh"]
+[ext_resource type="PackedScene" uid="uid://cfnoyoj8fxsam" path="res://Game/Ball/ball.tscn" id="5_snabk"]
+[ext_resource type="PackedScene" uid="uid://lu0gfjfyhyqp" path="res://Game/HUD/hud.tscn" id="6_rplki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rajy"]
+size = Vector2(1938, 34)
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("hud")]
+position = Vector2(920, 540)
+script = ExtResource("1_q2y1q")
+brick = ExtResource("2_skx1c")
+hud = NodePath("HUD")
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Environment"]
+offset_left = -1004.0
+offset_top = -566.0
+offset_right = 1072.0
+offset_bottom = 582.0
+color = Color(0, 0, 0, 1)
+
+[node name="RightBarrier" parent="Environment" instance=ExtResource("1_173ey")]
+position = Vector2(990, 2)
+rotation = -4.71239
+scale = Vector2(0.599999, 1)
+
+[node name="LeftBarrier" parent="Environment" instance=ExtResource("1_173ey")]
+position = Vector2(-912, -2)
+rotation = 1.5708
+scale = Vector2(0.599998, 1)
+
+[node name="TopBarrier" parent="Environment" instance=ExtResource("1_173ey")]
+position = Vector2(38, -527)
+scale = Vector2(1.065, 1)
+
+[node name="KillZone" type="Area2D" parent="Environment"]
+position = Vector2(0, 550)
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/KillZone"]
+position = Vector2(46, 12)
+shape = SubResource("RectangleShape2D_3rajy")
+
+[node name="Ball" parent="." instance=ExtResource("5_snabk")]
+collision_mask = 23
+
+[node name="Paddle" parent="." instance=ExtResource("2_wg8dh")]
+position = Vector2(21, 466)
+
+[node name="HUD" parent="." node_paths=PackedStringArray("game") instance=ExtResource("6_rplki")]
+offset_left = -920.0
+offset_top = -524.0
+offset_right = -920.0
+offset_bottom = -524.0
+game = NodePath("..")
+
+[connection signal="body_entered" from="Environment/KillZone" to="Ball" method="_on_kill_zone_body_entered"]
+[connection signal="body_entered" from="Environment/KillZone" to="Paddle" method="_on_kill_zone_body_entered"]
+[connection signal="body_entered" from="Environment/KillZone" to="HUD" method="_on_kill_zone_body_entered"]

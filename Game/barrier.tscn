@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvnwcf8swnk2u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_afttr"]
+size = Vector2(1800, 20)
+
+[node name="Barrier" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 9
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -900.0
+offset_top = -10.0
+offset_right = 900.0
+offset_bottom = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_afttr")

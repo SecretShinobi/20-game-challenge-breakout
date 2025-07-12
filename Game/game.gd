@@ -1,5 +1,5 @@
 class_name BreakoutGame
-extends Node2D
+extends Node
 
 
 # Variables
@@ -9,7 +9,7 @@ var bricks_remaining: int = 0
 
 @export var brick: PackedScene
 @export var hud: HUD
-@onready var ball = $Ball
+@export var ball: Ball
 
 # Signals
 
@@ -18,7 +18,7 @@ var bricks_remaining: int = 0
 func _ready():
 	ball.life_lost.connect(_on_life_lost)
 	
-	var spawn_point = Vector2(-625.0, -400.0)
+	var spawn_point = Vector2(400.0, 200.0)
 	
 	for i in range(0, 10): # Spawn in bricks
 		var brick_instance = brick.instantiate()
@@ -26,7 +26,7 @@ func _ready():
 		add_child(brick_instance)
 		bricks_remaining += 1
 		brick_instance.set_position(spawn_point)
-		spawn_point.x += 150
+		spawn_point.x += 120
 
 
 func _on_scored_points(points: int):

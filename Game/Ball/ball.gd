@@ -10,10 +10,11 @@ signal life_lost
 
 # Variables
 var damage: int = 1
+var spawn_point: Vector2 = Vector2(900.0, 600.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_position(Vector2(0.0, 0.0))
+	set_position(spawn_point)
 	set_velocity(Vector2(0.0, 500.0))
 
 
@@ -33,7 +34,7 @@ func _physics_process(delta):
 
 # Functions
 func _reset():
-	set_position(Vector2(0.0, 0.0))
+	set_position(spawn_point)
 	set_velocity(Vector2(0.0, 500.0))
 
 

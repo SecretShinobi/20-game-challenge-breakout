@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://lu0gfjfyhyqp"]
 
-[ext_resource type="Script" path="res://Game/HUD/hud.gd" id="1_gqdn6"]
+[ext_resource type="Script" uid="uid://ckypp0i76q5ha" path="res://Game/HUD/hud.gd" id="1_gqdn6"]
 [ext_resource type="LabelSettings" uid="uid://dtu4qevrggd8r" path="res://Game/HUD/hud.tres" id="2_xn6xw"]
 
 [node name="HUD" type="Control" node_paths=PackedStringArray("score", "lives")]
